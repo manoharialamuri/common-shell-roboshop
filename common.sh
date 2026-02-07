@@ -33,20 +33,6 @@ validate(){
     fi
 }
 
-nodejs_setup(){
-    dnf module disable nodejs -y &>> $LOGS_FILE
-    validate $? "Disabling nodejs default version"
-
-    dnf module enable nodejs:20 -y &>> $LOGS_FILE
-    validate $? "Enabling nodejs version 20"
-
-    dnf install nodejs -y &>> $LOGS_FILE
-    validate $? "Installing nodejs"
-    
-    npm install
-    validate $? "Installing Dependencies"
-}
-
 app_setup(){
     id roboshop &>> $LOGS_FILE
     if [ $? -ne 0 ]; then
@@ -70,6 +56,22 @@ app_setup(){
     unzip /tmp/$app_name.zip &>> $LOGS_FILE
     validate $? "unzipping $app_name file"
 }
+
+nodejs_setup(){
+    dnf module disable nodejs -y &>> $LOGS_FILE
+    validate $? "Disabling nodejs default version"
+
+    dnf module enable nodejs:20 -y &>> $LOGS_FILE
+    validate $? "Enabling nodejs version 20"
+
+    dnf install nodejs -y &>> $LOGS_FILE
+    validate $? "Installing nodejs"
+    
+    npm install
+    validate $? "Installing Dependencies"
+}
+
+
 
 java_setup(){
     dnf install maven -y &>>$LOGS_FILE

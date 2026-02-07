@@ -4,11 +4,9 @@ app_name=user
 
 source ./common.sh
 
-
+app_setup
 
 nodejs_setup
-
-app_setup
 
 systemd_setup
 
