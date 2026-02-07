@@ -15,6 +15,6 @@ validate $? "Allowing remote connections"
 systemctl daemon-reload
 validate $? "reloaded"
 
-systemd_setup
+app_restart
 print_total_time
 
