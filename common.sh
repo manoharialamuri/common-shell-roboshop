@@ -48,7 +48,6 @@ nodejs_setup(){
 }
 
 
-
 java_setup(){
     dnf install maven -y &>>$LOGS_FILE
     VALIDATE $? "Installing Maven"
@@ -63,6 +62,7 @@ java_setup(){
 python_setup(){
     dnf install python3 gcc python3-devel -y
     validate $? "Installing python"
+    
     cd /app
     pip3 install -r requirements.txt
     validate $? "installing requirements file"
@@ -76,7 +76,6 @@ nginx_setup(){
     validate $? "enable nginx 24"
     dnf install nginx -y &>> $LOGS_FILE
     validate $? "Installing nginx"
-
 }
 
 app_setup(){
@@ -103,7 +102,6 @@ app_setup(){
     unzip /tmp/$app_name.zip &>> $LOGS_FILE
     validate $? "unzipping $app_name file"
 }
-
 
 systemd_setup(){
     cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service
