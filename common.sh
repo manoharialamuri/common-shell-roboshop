@@ -2,8 +2,6 @@
 
 USERID=$(id -u)
 
-mkdir -p $LOGS_FOLDER
-
 LOGS_FOLDER="/var/log/common-shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
 R="\e[31m"
@@ -14,6 +12,8 @@ N="\e[0m"
 SCRIPT_DIR=$PWD
 START_TIME=$(date +%s)
 MONGO_HOST=mongodb.daws88s.store
+
+mkdir -p $LOGS_FOLDER
 
 echo "$(date "+%Y-%m-%d %H:%M:%S") | Script executed at : $(date)" | tee -a $LOGS_FILE 
 
@@ -115,7 +115,6 @@ app_restart(){
 
 print_total_time(){
     End_time=$(date +%s)
-    Total_Time={($End_time-$START_TIME)}
-    echo -e "$(date "+%Y-%m-%d %H:%M:%S") | "Script Executed in :$G $Total_time in seconds $N" | tee -a $LOGS_FILE
-
+    Total_Time=($End_time-$START_TIME)
+    echo -e "$(date "+%Y-%m-%d %H:%M:%S") | "Script Executed in :$G $Total_time in seconds $N"" | tee -a $LOGS_FILE
 }
