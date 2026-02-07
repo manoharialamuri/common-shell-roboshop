@@ -41,11 +41,11 @@ app_setup(){
     else
         echo -e "roboshop user already existed...$Y Skipping $N"
     fi
-    
+
     mkdir -p /app 
     validate $? "Creating app directory"
 
-    curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>> $LOGS_FILE
+    curl -L -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>> $LOGS_FILE
     validate $? "Downloading $app_name file"
 
     cd /app
