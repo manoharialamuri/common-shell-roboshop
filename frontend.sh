@@ -6,7 +6,6 @@ source ./common.sh
 
 check_root
 nginx_setup
-app_setup
 
 rm -rf /usr/share/nginx/html/* 
 validate $? "removing content from the file"
