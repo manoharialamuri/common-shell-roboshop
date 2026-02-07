@@ -1,6 +1,6 @@
 #!/bin/bash
 
-app_name=rabbitmq
+app_name=rabbitmq-server
 
 source ./common.sh
 
@@ -11,11 +11,12 @@ validate $? "installing repo"
 dnf install rabbitmq-server -y
 validate $? "installing server"
 
-systemd_setup
-
 rabbitmqctl add_user roboshop roboshop123
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
 validate $? "Adding user & giving permissions"
 
+app_restart
+
 print_total_time
+
 
