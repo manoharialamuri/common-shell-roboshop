@@ -15,7 +15,8 @@ rabbitmqctl add_user roboshop roboshop123
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
 validate $? "Adding user & giving permissions"
 
-app_restart
+systemctl daemon-reload
+
 
 print_total_time
 
