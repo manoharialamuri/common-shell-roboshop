@@ -2,7 +2,7 @@
 
 app_name=catalogue
 
-source ./commom.sh
+source ./common.sh
 
 check_root
 
