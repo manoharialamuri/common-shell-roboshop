@@ -12,8 +12,6 @@ validate $? "copying mongo repo"
 dnf install mongodb-org -y | tee -a $LOGS_FILE
 validate $? "Installing mongodb server"
 
-systemd_setup
-
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 validate $? "Allowing remote users"
 
