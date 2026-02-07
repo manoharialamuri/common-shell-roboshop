@@ -33,31 +33,6 @@ validate(){
     fi
 }
 
-app_setup(){
-    id roboshop &>> $LOGS_FILE
-    if [ $? -ne 0 ]; then
-        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-        validate $? "Creating system user"
-    else
-        echo -e "roboshop user already existed...$Y Skipping $N"
-    fi
-
-    mkdir -p /app 
-    validate $? "Creating app directory"
-
-    curl -L -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>> $LOGS_FILE
-    validate $? "Downloading $app_name file"
-
-    cd /app
-    validate $? "moving to app directory"
-
-    rm -rf /app/*
-    validate $? "removing existing code"
-
-    unzip /tmp/$app_name.zip &>> $LOGS_FILE
-    validate $? "unzipping $app_name file"
-}
-
 nodejs_setup(){
     dnf module disable nodejs -y &>> $LOGS_FILE
     validate $? "Disabling nodejs default version"
@@ -103,6 +78,33 @@ nginx_setup(){
     validate $? "Installing nginx"
 
 }
+
+app_setup(){
+    id roboshop &>> $LOGS_FILE
+    if [ $? -ne 0 ]; then
+        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+        validate $? "Creating system user"
+    else
+        echo -e "roboshop user already existed...$Y Skipping $N"
+    fi
+
+    mkdir -p /app 
+    validate $? "Creating app directory"
+
+    curl -L -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>> $LOGS_FILE
+    validate $? "Downloading $app_name file"
+
+    cd /app
+    validate $? "moving to app directory"
+
+    rm -rf /app/*
+    validate $? "removing existing code"
+
+    unzip /tmp/$app_name.zip &>> $LOGS_FILE
+    validate $? "unzipping $app_name file"
+}
+
+
 systemd_setup(){
     cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service
     validate $? "Copying systemctl file"
