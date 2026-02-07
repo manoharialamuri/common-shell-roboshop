@@ -10,6 +10,7 @@ validate $? "installing mysql"
 mysql_secure_installation --set-root-pass RoboShop@1
 validate $? "creating password"
 
-app_restart
+systemctl start mysqld
+systemctl enable mysqld
 
 print_total_time
