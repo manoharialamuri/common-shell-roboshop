@@ -41,6 +41,7 @@ app_setup(){
     else
         echo -e "roboshop user already existed...$Y Skipping $N"
     fi
+    
     mkdir -p /app 
     validate $? "Creating app directory"
 
