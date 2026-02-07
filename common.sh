@@ -11,7 +11,7 @@ B="\e[34m"
 N="\e[0m"
 SCRIPT_DIR=$PWD
 START_TIME=$(date +%s)
-MONGO_HOST=mongodb.daws88s.store
+MONGODB_HOST=mongodb.daws88s.store
 
 mkdir -p $LOGS_FOLDER
 
