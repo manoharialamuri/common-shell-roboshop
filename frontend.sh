@@ -1,6 +1,6 @@
 #!/bin/bash
 
-app_name=frontend
+app_name=nginx
 
 source ./common.sh
 
