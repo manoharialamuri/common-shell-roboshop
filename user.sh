@@ -4,10 +4,9 @@ app_name=user
 
 source ./common.sh
 
-check_root
+
 
 nodejs_setup
-
 
 app_setup
 
