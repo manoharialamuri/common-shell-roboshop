@@ -7,6 +7,7 @@ check_root
 
 dnf install golang -y
 validate $? "Installing golang"
+app_setup
 cd /app 
 go mod init dispatch
 validate $? "Init dispatch"
